@@ -1,0 +1,431 @@
+/* Dark Themed Gamified Style */
+
+/* 1. Variables for dark theme and gamified accents */
+:root {
+  --bg-main: #12131a;
+  --bg-surface: #1e2028;
+  --bg-card: #252a36;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a5a5a5;
+  --accent: #ffcc33;           /* gold / XP color */
+  --accent-2: #00d2ff;         /* neon / electric cyan */
+  --border: #333849;
+  --shadow: rgba(0, 0, 0, 0.7);
+  --shadow-light: rgba(46,94,77,0.3);
+  --soft-radius: 10px;
+  --ease: cubic-bezier(0.2, 0.9, 0.3, 1);
+  --font: 'Segoe UI', Arial, sans-serif;
+}
+
+/* 2. Global reset & body background + overlay */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  background-image: url('path/to/dark-game-background.jpg'); /* set your dark themed bg image */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #a5ffa5;  /* dark overlay to improve readability */
+  z-index: -1;
+}
+
+/* 3. Header styling */
+header {
+  background: #3bba3b;
+  color: var(--text-primary);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px var(--shadow);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Level badge in header */
+.level-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, rgba(255,204,51,0.2), rgba(0,210,255,0.2));
+  border: 1px solid var(--accent);
+  border-radius: 25px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+/* nav links */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s var(--ease), transform 0.2s var(--ease);
+}
+
+nav a:hover {
+  color: var(--accent-2);
+  transform: translateY(-2px);
+}
+
+/* 4. Create Post container */
+#create-post {
+  background: #123a12;
+  margin: 30px auto;
+  padding: 24px;
+  border-radius: var(--soft-radius);
+  max-width: 600px;
+  box-shadow: 0 6px 30px var(--shadow);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* XP ribbon on create post card */
+#create-post::before {
+  content: "XP +5";
+  position: absolute;
+  top: -12px; right: 20px;
+  background: var(--accent);
+  color: var(--bg-main);
+  padding: 6px 14px;
+  border-radius: 25px;
+  font-size: 0.85em;
+  font-weight: 800;
+  transform: rotate(-5deg);
+  box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+/* Post content textarea or input */
+#post-content {
+  min-height: 80px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--soft-radius);
+  padding: 12px;
+  color: var(--text-primary);
+  font-size: 1em;
+  resize: vertical;
+  transition: box-shadow 0.3s var(--ease), transform 0.2s var(--ease);
+}
+
+#post-content:focus {
+  box-shadow: 0 8px 20px var(--shadow-light);
+  transform: translateY(-2px);
+  outline: none;
+  border-color: var(--accent-2);
+}
+
+/* Image upload area (if any) */
+#post-image {
+  margin-top: 8px;
+}
+
+/* Submit button style */
+#create-post button {
+  background: linear-gradient(180deg, var(--accent), #e6b800);
+  color: var(--bg-main);
+  border: none;
+  padding: 12px 28px;
+  border-radius: var(--soft-radius);
+  cursor: pointer;
+  font-weight: bold;
+  align-self: flex-start;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s var(--ease), box-shadow 0.3s var(--ease);
+  box-shadow: 0 6px 20px var(--shadow-light), inset 0 0 6px rgba(255,255,255,0.1);
+}
+
+#create-post button:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+#create-post button:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 3px 10px var(--shadow-light);
+}
+
+/* 5. Feed & posts */
+#feed {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.post {
+  background: #123a12;
+  border-radius: var(--soft-radius);
+  margin-bottom: 20px;
+  box-shadow: 0 8px 30px var(--shadow);
+  padding: 24px;
+  transition: transform 0.2s var(--ease), box-shadow 0.3s var(--ease);
+  border: 1px solid var(--border);
+}
+
+.post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 40px var(--shadow);
+}
+
+/* Post header: avatar, meta */
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-main);
+  font-weight: 900;
+  font-size: 1.2em;
+  box-shadow: 0 6px 18px var(--shadow-light);
+  border: 2px solid var(--border);
+}
+
+.post-meta {
+  font-size: 0.9em;
+  color: var(--text-secondary);
+}
+
+/* Post content text & images */
+.post-content {
+  margin: 18px 0;
+  font-size: 1.05em;
+  white-space: pre-wrap;
+  color: var(--text-primary);
+}
+
+.post img {
+  max-width: 100%;
+  border-radius: var(--soft-radius);
+  margin: 14px 0;
+  border: 1px solid var(--border);
+}
+
+/* 6. Post actions: likes / comments etc. */
+.post-actions {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.post-actions button {
+  background: none;
+  border: none;
+  color: var(--accent-2);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  padding: 6px 12px;
+  border-radius: var(--soft-radius);
+  transition: background 0.3s var(--ease), transform 0.2s var(--ease);
+}
+
+.post-actions button:hover {
+  background: linear-gradient(90deg, rgba(0,210,255,0.2), rgba(255,204,51,0.2));
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Likes & comments count style */
+.likes, .comments {
+  font-size: 0.95em;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* Comment section */
+.comment-section {
+  margin-top: 14px;
+}
+
+.comment-section input {
+  width: 75%;
+  padding: 10px;
+  border-radius: var(--soft-radius);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transition: border-color 0.3s var(--ease);
+}
+
+.comment-section input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+.comment-section button {
+  background: var(--accent);
+  color: var(--bg-main);
+  border: none;
+  border-radius: var(--soft-radius);
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s var(--ease), transform 0.2s var(--ease);
+}
+
+.comment-section button:hover {
+  background: #e6b800; /* slight lighter gold */
+  transform: translateY(-2px);
+}
+
+/* Badges style */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.85em;
+  color: var(--bg-main);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 6px 18px var(--shadow-light);
+  border: 1px solid var(--border);
+}
+
+.badge .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--bg-main);
+  color: var(--accent);
+  border-radius: 6px;
+}
+
+/* XP / Progress bar */
+.post-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.xp-wrap {
+  width: 300px;
+  background: var(--bg-surface);
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.xp-bar {
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #e6b800);
+  width: 0;
+  transition: width 1s var(--ease);
+  box-shadow: 0 4px 12px var(--shadow-light);
+  position: relative;
+}
+
+.xp-bar[data-percent]::after {
+  content: attr(data-percent) "%";
+  position: absolute;
+  right: 8px;
+  top: -24px;
+  font-size: 0.85em;
+  color: var(--accent);
+  background: var(--bg-card);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+/* Confetti effect (trigger when post is liked or badge awarded) */
+.confetti-piece {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  background: var(--accent);
+}
+
+.post.burst .confetti-piece {
+  animation: confetti-fall 900ms var(--ease) forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(120px) rotate(540deg) scale(1.2);
+  }
+}
+
+/* Utility classes */
+.small {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+}
+
+.kudos {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  #feed {
+    padding: 20px;
+  }
+  .xp-wrap { width: 180px; }
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
+  #post-content { min-height: 60px; }
+  header {
+    padding: 16px 24px;
+  }
+}

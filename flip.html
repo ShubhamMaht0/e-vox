@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip Card Game - Environmental Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <link rel="stylesheet" href="flipStyles.css">
+    
+</head>
+<body>
+    <div class="container"></div>
+        <aside class="sidebar" id="sidebar">
+            <h2>My Dashboard</h2>
+            <img src="img/profile-pic.jpg" alt="Profile Picture" class="profile-img">
+            <p>Welcome, Learner!</p>
+            <nav>
+                <div class="menu-item" onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Home</div>
+                <div class="menu-item"><i class="fas fa-user"></i> Profile</div>
+                <div class="menu-item"><i class="fas fa-book"></i> My Courses</div>
+                <div class="menu-item" onclick="window.location.href='progress.html'"><i class="fas fa-chart-line"></i> Progress</div>
+                <div class="menu-item" onclick="window.location.href='rewards.html'"><i class="fas fa-trophy"></i> Achievements</div>
+                <div class="menu-item"><i class="fas fa-cog"></i> Settings</div>
+                <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-sign-in-alt"></i> Login</div>
+            </nav>
+        </aside>
+        <main class="main-content" id="main-content">
+            <header>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>E-VoX Environmental Learning Platform</h1>
+            </header>
+            <div class="game-container">
+                <h1>Learn about Environment</h1>
+                <div class="game-board">
+                    <div class="game-board">
+                        <!-- Preamble Cards -->
+                        <div class="card" data-name="preamble">
+                            <div class="front">?</div>
+                            <div class="back">Afforestation </div>
+                        </div>
+                        <div class="card" data-name="preamble">
+                            <div class="front">?</div>
+                            <div class="back">Tree planting</div>
+                        </div>
+                        
+                        <!-- Fundamental Rights Cards -->
+                        <div class="card" data-name="fundamental-rights">
+                            <div class="front">?</div>
+                            <div class="back">Pollution</div>
+                        </div>
+                        <div class="card" data-name="fundamental-rights">
+                            <div class="front">?</div>
+                            <div class="back">Environment damage</div>
+                        </div>
+                        
+                        <!-- Directive Principles Cards -->
+                        <div class="card" data-name="directive-principles">
+                            <div class="front">?</div>
+                            <div class="back">Renewable</div>
+                        </div>
+                        <div class="card" data-name="directive-principles">
+                            <div class="front">?</div>
+                            <div class="back">Endless resource</div>
+                        </div>
+                    
+                        <!-- Fundamental Duties Cards -->
+                        <div class="card" data-name="fundamental-duties">
+                            <div class="front">?</div>
+                            <div class="back">Non-renewable</div>
+                        </div>
+                        <div class="card" data-name="fundamental-duties">
+                            <div class="front">?</div>
+                            <div class="back">Limited resource</div>
+                        </div>
+                    
+                        <!-- Union and its Territory Cards -->
+                        <div class="card" data-name="union-territory">
+                            <div class="front">?</div>
+                            <div class="back">Conservation</div>
+                        </div>
+                        <div class="card" data-name="union-territory">
+                            <div class="front">?</div>
+                            <div class="back">Resource protection</div>
+                        </div>
+                    
+                        <!-- Judiciary Cards -->
+                        <div class="card" data-name="judiciary">
+                            <div class="front">?</div>
+                            <div class="back">Ecosystem </div>
+                        </div>
+                        <div class="card" data-name="judiciary">
+                            <div class="front">?</div>
+                            <div class="back">Living system</div>
+                        </div>
+                    
+                        <!-- Parliament Cards -->
+                        <div class="card" data-name="parliament">
+                            <div class="front">?</div>
+                            <div class="back">Greenhouse</div>
+                        </div>
+                        <div class="card" data-name="parliament">
+                            <div class="front">?</div>
+                            <div class="back">Heat trapping</div>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="flipScripts.js"></script>
+</body>
+</html>

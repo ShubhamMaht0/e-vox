@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>E-VOX Social Blog Feed</title>
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <header>
+    <h1>E-VOX</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">My Profile</a></li>
+        <li><a href="#">Create Post</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="create-post">
+      <textarea id="post-content" placeholder="Share an environmental idea or blog..."></textarea>
+      <input type="file" id="post-image" accept="image/*" onchange="previewImage(event)" />
+      <img
+        id="image-preview"
+        src=""
+        alt="Image Preview"
+        style="display: none; max-width: 200px; margin-top: 10px; border-radius: 8px;"
+      />
+      <button onclick="addPost()">Post</button>
+    </section>
+
+    <section id="feed">
+      <!-- Posts will render here -->
+    </section>
+  </main>
+
+  <script src="blog.js"></script>
+</body>
+</html>

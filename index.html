@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-VoX - Environmental Learning Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <link href="homeStyles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <h2 data-translate="myDashboard">My Eco Dashboard</h2>
+            <img src="img/profile-pic.jpg" alt="Profile Picture" class="profile-img">
+            <p><span data-translate="welcome">Welcome</span>, <span data-translate="learner">Eco Learner</span>!</p>
+            <nav>
+                <div class="menu-item" onclick="window.location.href='index.html'"><i class="fas fa-home"></i> <span data-translate="home">Home</span></div>
+                <div class="menu-item"><i class="fas fa-user"></i> <span data-translate="profile">Profile</span></div>
+                <div class="menu-item"><i class="fas fa-leaf"></i> <span data-translate="myLessons">My Lessons</span></div>
+                <div class="menu-item" onclick="window.location.href='progress.html'"><i class="fas fa-chart-line"></i> <span data-translate="progress">Progress</span></div>
+                <div class="menu-item" onclick="window.location.href='rewards.html'"><i class="fas fa-award"></i> <span data-translate="achievements">Eco Achievements</span></div>
+                <div class="menu-item"><i class="fas fa-cog"></i> <span data-translate="settings">Settings</span></div>
+                <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-sign-in-alt"></i> <span data-translate="login">Login</span></div>
+            </nav>
+            <div class="language-selector">
+                <label for="language"><i class="fas fa-globe"></i> <span data-translate="language">Language</span>:</label>
+                <select id="language" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <header>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 data-translate="platformTitle">E-VoX - Environmental Learning Platform</h1>
+                <img src="img/logo.png" alt="EcoLearn Logo" class="logo">
+            </header>
+
+            <div class="dashboard">
+                <div class="card" onclick="window.location.href='course.html'">
+                    <i class="fas fa-book card-icon"></i>
+                    <h3 data-translate="currentLessons">Current Lessons</h3>
+                    <ul class="course-list">
+                        <li class="course-item">
+                            <span data-translate="climateChange">Climate Change Basics</span>
+                            <span class="badge" data-translate="inProgress">In Progress</span>
+                        </li>
+                        <li class="course-item">
+                            <span data-translate="wasteManagement">Waste Management</span>
+                            <span class="badge" data-translate="new">New</span>
+                        </li>
+                        <li class="course-item">
+                            <span data-translate="renewableEnergy">Renewable Energy</span>
+                            <span class="badge" data-translate="comingSoon">Coming Soon</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card" onclick="window.location.href='game.html'">
+                    <i class="fas fa-gamepad card-icon"></i>
+                    <h3 data-translate="playTime">Eco Games</h3>
+                    <p data-translate="gamePoints">Collect green points by completing challenges</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 20%;"></div>
+                    </div>
+                    <p><span data-translate="percentComplete">Complete</span>: 20%</p>
+                </div>
+
+                <div class="card" onclick="window.location.href='progress.html'">
+                    <i class="fas fa-seedling card-icon"></i>
+                    <h3 data-translate="learningProgress">My Eco Progress</h3>
+                    <p data-translate="progressTrack">Track how green you are becoming</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%;"></div>
+                    </div>
+                    <p><span data-translate="percentComplete">Complete</span>: 60%</p>
+                </div>
+
+                <div class="card" onclick="window.location.href='quiz.html'">
+                    <i class="fas fa-question card-icon"></i>
+                    <h3 data-translate="quizTime">Eco Quiz</h3>
+                    <p data-translate="answeredCorrectly">Correct Answers</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%;"></div>
+                    </div>
+                    <p><span data-translate="percentCorrect">Correct</span>: 85%</p>
+                </div>
+
+                <div class="card" onclick="window.location.href='rewards.html'">
+                    <i class="fas fa-medal card-icon"></i>
+                    <h3 data-translate="achievements">Eco Achievements</h3>
+                    <p data-translate="latestAccomplishments">Your latest green actions</p>
+                    <ul class="course-list">
+                        <li class="course-item">
+                            <span data-translate="recycleHero">Recycle Hero</span>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                        </li>
+                        <li class="course-item">
+                            <span data-translate="waterSaver">Water Saver Champion</span>
+                            <i class="fas fa-award" style="color: silver;"></i>
+                        </li>
+                    </ul>
+                </div>
+
+                
+                <div class="card" onclick="window.location.href='eco_tasks.html'">
+                    <i class="fas fa-chart-bar card-icon"></i>
+                    <h3 data-translate="learningStats">Eco Tasks</h3>
+                    <p data-translate="weeklyActivity">Your green activity this week</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%;"></div>
+                    </div>
+                    <p><span data-translate="studyTime">5 eco-actions completed</span></p>
+                </div>
+
+                <div class="card" onclick="window.location.href='blog.html'">
+                    <i class="fas fa-chart-bar card-icon"></i>
+                    <h3 data-translate="blog">Blog</h3>
+                    <p data-translate="ecoJourney">Share your Eco journey</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%;"></div>
+                    </div>
+                    <p><span data-translate="mood">What's in your mood..</span></p>
+                </div>
+
+                <div class="card" onclick="window.location.href='feedback.html'">
+                    <i class="fas fa-comments card-icon"></i>
+                    <h3 data-translate="feedback">Feedback</h3>
+                    <ul class="course-list">
+                        <li class="course-item">
+                            <span data-translate="feedbackGame">Love the eco-games!</span>
+                            <span class="badge" data-translate="good">Good</span>
+                        </li>
+                        <li class="course-item">
+                            <span data-translate="feedbackContent">Great environmental tips!</span>
+                            <span class="badge" data-translate="nice">Nice</span>
+                        </li>
+                        <li class="course-item">
+                            <span data-translate="feedbackBoring">Needs more activities...</span>
+                            <span class="badge" data-translate="veryBad">Improve</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                myDashboard: "My Eco Dashboard",
+                welcome: "Welcome",
+                learner: "Eco Learner",
+                home: "Home",
+                profile: "Profile",
+                myLessons: "My Lessons",
+                progress: "Progress",
+                achievements: "Eco Achievements",
+                settings: "Settings",
+                login: "Login",
+                language: "Language",
+                platformTitle: "E-VoX - Environmental Learning Platform",
+                currentLessons: "Current Lessons",
+                climateChange: "Climate Change Basics",
+                wasteManagement: "Waste Management",
+                renewableEnergy: "Renewable Energy",
+                inProgress: "In Progress",
+                new: "New",
+                comingSoon: "Coming Soon",
+                playTime: "Eco Games",
+                gamePoints: "Collect green points by completing challenges",
+                percentComplete: "Complete",
+                learningProgress: "My Eco Progress",
+                progressTrack: "Track how green you are becoming",
+                quizTime: "Eco Quiz",
+                answeredCorrectly: "Correct Answers",
+                percentCorrect: "Correct",
+                latestAccomplishments: "Your latest green actions",
+                recycleHero: "Recycle Hero",
+                waterSaver: "Water Saver Champion",
+                learningStats: "Eco Tasks",
+                weeklyActivity: "Your green activity this week",
+                studyTime: "5 eco-actions completed",
+                feedback: "Feedback",
+                feedbackGame: "Love the eco-games!",
+                good: "Good",
+                feedbackContent: "Great environmental tips!",
+                nice: "Nice",
+                feedbackBoring: "Needs more activities...",
+                veryBad: "Improve",
+                blog: "Blog",
+                ecoJourney: "Share your Eco journey",
+                mood: "What's in your mood.."
+
+            },
+            hi: {
+                myDashboard: "मेरा इको डैशबोर्ड",
+                welcome: "स्वागत है",
+                learner: "इको शिक्षार्थी",
+                home: "होम",
+                profile: "प्रोफ़ाइल",
+                myLessons: "मेरे पाठ",
+                progress: "प्रगति",
+                achievements: "इको उपलब्धियाँ",
+                settings: "सेटिंग्स",
+                login: "लॉगिन",
+                language: "भाषा",
+                platformTitle: "ई-वॉक्स - पर्यावरण शिक्षा प्लेटफॉर्म",
+                currentLessons: "वर्तमान पाठ",
+                climateChange: "जलवायु परिवर्तन की मूल बातें",
+                wasteManagement: "कचरा प्रबंधन",
+                renewableEnergy: "नवीकरणीय ऊर्जा",
+                inProgress: "प्रगति में",
+                new: "नया",
+                comingSoon: "जल्द आ रहा है",
+                playTime: "इको गेम्स",
+                gamePoints: "चुनौतियाँ पूरी कर ग्रीन पॉइंट्स कमाएँ",
+                percentComplete: "पूर्ण",
+                learningProgress: "मेरी इको प्रगति",
+                progressTrack: "जाँचें आप कितने ग्रीन बन रहे हैं",
+                quizTime: "इको क्विज़",
+                answeredCorrectly: "सही उत्तर",
+                percentCorrect: "सही",
+                latestAccomplishments: "आपकी नवीनतम ग्रीन गतिविधियाँ",
+                recycleHero: "रीसायकल हीरो",
+                waterSaver: "वॉटर सेवर चैंपियन",
+                learningStats: "इको कार्य",
+                weeklyActivity: "इस सप्ताह की आपकी ग्रीन गतिविधि",
+                studyTime: "5 इको-एक्शन पूरे किए",
+                feedback: "प्रतिक्रिया",
+                feedbackGame: "इको गेम्स बहुत अच्छे हैं!",
+                good: "अच्छा",
+                feedbackContent: "शानदार पर्यावरण टिप्स!",
+                nice: "बढ़िया",
+                feedbackBoring: "और गतिविधियों की ज़रूरत है...",
+                veryBad: "सुधारें",
+                blog: "ब्लॉग",
+                ecoJourney: "अपनी पर्यावरणीय यात्रा साझा करें",
+                mood: "आज मन में क्या है..."
+            }
+        };
+
+        function changeLanguage() {
+            const language = document.getElementById("language").value;
+            document.documentElement.lang = language;
+            updateContent(language);
+        }
+
+        function updateContent(language) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[language] && translations[language][key]) {
+                    element.textContent = translations[language][key];
+                }
+            });
+        }
+
+        updateContent('en');
+    </script>
+
+    <script src="homeScripts.js"></script>
+</body>
+</html>

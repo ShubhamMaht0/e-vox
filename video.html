@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>E-VOX — Environmental Education Shorts</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body,#app{height:100%}
+    body{font-family:Inter, system-ui, Arial, sans-serif;background:#000;color:#fff}
+
+    header{position:fixed;left:0;right:0;top:0;height:64px;display:flex;align-items:center;gap:12px;padding:0 16px;background:linear-gradient(0deg, rgba(0,0,0,0.25), transparent);z-index:20}
+    header h1{font-size:18px}
+
+    .feed{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory}
+    .card{position:relative;height:100vh;scroll-snap-align:start;display:flex;align-items:flex-end;justify-content:flex-start}
+
+    iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+
+    .overlay{position:relative;z-index:2;padding:20px;display:flex;align-items:flex-end;justify-content:space-between;width:100%;height:100%}
+    .left{max-width:65%;}
+    .title{font-weight:700;font-size:18px;text-shadow:0 2px 10px rgba(0,0,0,0.6);margin-bottom:10px}
+    .meta{font-size:13px;opacity:0.9}
+    .right{width:90px;display:flex;flex-direction:column;align-items:center;gap:18px;padding-bottom:80px}
+
+    .round-btn{width:52px;height:52px;border-radius:18px;background:rgba(0,0,0,0.5);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:12px;text-align:center}
+    .round-btn svg{width:22px;height:22px;margin-bottom:6px}
+
+    .controls{position:absolute;left:50%;transform:translateX(-50%);bottom:18px;display:flex;gap:8px;z-index:3}
+    .btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:600}
+
+    .skeleton{background:linear-gradient(90deg,#111 0,#222 50%,#111 100%);height:100%;width:100%}
+
+    @media (min-width:900px){
+      .card{align-items:center}
+      .left{max-width:55%}
+      .right{width:90px}
+    }
+
+    .hint{position:fixed;left:12px;bottom:12px;background:rgba(0,0,0,0.5);padding:8px 12px;border-radius:10px;font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="logo" style="width:32px;height:32px;border-radius:8px;background:linear-gradient(90deg,#24c6dc,#514a9d);" />
+    <h1>E-VOX — Learn Green, 60s at a time</h1>
+  </header>
+
+  <main id="app" style="padding-top:64px">
+    <section class="feed" id="feed" aria-live="polite"></section>
+    <div class="hint">Tip: Scroll or use ↑↓ keys. Videos auto-play when visible.</div>
+  </main>
+
+  <template id="card-template">
+    <article class="card" role="article">
+      <iframe allow="autoplay; encrypted-media" allowfullscreen tabindex="0"></iframe>
+      <div class="overlay">
+        <div class="left">
+          <div class="title"></div>
+          <div class="meta"></div>
+        </div>
+        <div class="right">
+          <button class="round-btn like" aria-label="like">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9-7.07C1.24 11.77 2 7.5 5.5 5 8.15 3.08 11.15 4 12 5c.85-1 3.85-1.92 6.5 0C22 7.5 22.76 11.77 21 13.93 19 16.65 12 21 12 21z"/></svg>
+            <div class="count">0</div>
+          </button>
+          <button class="round-btn save" aria-label="save">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9a2 2 0 0 1 2 2v16l-7-3-7 3V4a2 2 0 0 1 2-2z"/></svg>
+            <div class="count">Save</div>
+          </button>
+          <button class="round-btn share" aria-label="share">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 8a3 3 0 1 0-2.83-4H14v6h1.17A3 3 0 0 0 18 8zM6 16a3 3 0 1 0 2.83 4H10v-6H8.83A3 3 0 0 0 6 16zM8 12h8v2H8z"/></svg>
+            <div class="count">Share</div>
+          </button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    const seedData = [
+      {
+        id: 1,
+        title: 'One Earth - Environmental Short Film',
+        meta: 'Awareness Short • 4m',
+        src: 'https://www.youtube.com/embed/QQYgCxu988s?autoplay=1&mute=1&loop=1&playlist=QQYgCxu988s'
+      },
+      {
+        id: 2,
+        title: 'Be an Eco-Hero: Take Care of Our Planet!',
+        meta: 'Fun World For Kids • 4m',
+        src: 'https://www.youtube.com/embed/belXC_IoW4o?autoplay=1&mute=1&loop=1&playlist=belXC_IoW4o'
+      },
+      {
+        id: 3,
+        title: 'Dive into the World of Environmental Education!',
+        meta: 'Education Shorts • 0:60',
+        src: 'https://www.youtube.com/embed/Xy-q9Hk-X5k?autoplay=1&mute=1&loop=1&playlist=Xy-q9Hk-X5k'
+      }
+    ];
+
+    const feed = document.getElementById('feed');
+    const tpl = document.getElementById('card-template');
+
+    let pool = [];
+    let appended = 0;
+
+    function makeCard(item){
+      const node = tpl.content.cloneNode(true);
+      const article = node.querySelector('.card');
+      const iframe = node.querySelector('iframe');
+      const title = node.querySelector('.title');
+      const meta = node.querySelector('.meta');
+      const likeBtn = node.querySelector('.like');
+
+      title.textContent = item.title;
+      meta.textContent = item.meta;
+      iframe.src = item.src;
+
+      likeBtn.addEventListener('click', ()=>{
+        const countEl = likeBtn.querySelector('.count');
+        let n = parseInt(countEl.textContent) || 0; n++;
+        countEl.textContent = n;
+        likeBtn.animate([{transform:'scale(1)'},{transform:'scale(1.15)'},{transform:'scale(1)'}],{duration:250});
+      });
+
+      node.querySelector('.share').addEventListener('click', async()=>{
+        try{
+          await navigator.share?.({title:item.title,text:item.meta,url:location.href});
+        }catch(e){alert('Share not supported, copy URL instead.');}
+      });
+
+      return {article,iframe,element:article};
+    }
+
+    function refillPool(){
+      for(let i=0;i<10;i++){
+        const base = seedData[i % seedData.length];
+        const copy = {...base, id: base.id + '-' + appended + '-' + i};
+        pool.push(copy);
+      }
+    }
+
+    function appendCards(n=4){
+      if(pool.length < n) refillPool();
+      for(let i=0;i<n;i++){
+        const item = pool.shift();
+        const {article} = makeCard(item);
+        feed.appendChild(article);
+        appended++;
+      }
+    }
+
+    feed.addEventListener('scroll', ()=>{
+      const bottom = feed.scrollTop + feed.clientHeight >= feed.scrollHeight - 300;
+      if(bottom){ appendCards(3); }
+    });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'k' || e.key === 'ArrowUp') feed.scrollBy({top:-window.innerHeight,behavior:'smooth'});
+      if(e.key === 'j' || e.key === 'ArrowDown') feed.scrollBy({top:window.innerHeight,behavior:'smooth'});
+    });
+
+    appendCards(6);
+
+    feed.addEventListener('click', (e)=>{
+      const card = e.target.closest('.card');
+      if(card){ const v = card.querySelector('iframe'); v?.focus(); }
+    });
+  </script>
+</body>
+</html>

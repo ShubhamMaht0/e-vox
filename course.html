@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoLearn – Environmental Learning Platform</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <link href="courseStyles.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Top Header -->
+    <div class="header">
+        <h1>E-VoX – Environmental Learning Platform</h1>
+        <div class="header-right">
+            <!-- You can add more icons or a search bar here -->
+        </div>
+    </div>
+
+    <!-- Left Sidebar -->
+    <div class="sidebar-left" id="leftSidebar">
+        <img src="img/profile-pic.jpg" alt="Profile" class="profile-img">
+        <h3>Welcome, Learner!</h3>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-user"></i> Profile</a>
+        <a href="course.html"><i class="fas fa-book"></i> My Courses</a>
+        <a href="video.html"><i class="fas fa-book"></i> Shorts</a>
+        <a href="progress.html"><i class="fas fa-chart-line"></i> Progress</a>
+        <a href="rewards.html"><i class="fas fa-trophy"></i> Achievements</a>
+        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html"><i class="fas fa-sign-in-alt"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/gEk6JLJNg0U?si=zNZvg-ITu-XIHyd9" 
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+            gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comment-section">
+            <h3>Comments</h3>
+            <div class="comment-form">
+                <textarea id="commentInput" placeholder="Add a comment..."></textarea>
+                <button onclick="addComment()">Submit</button>
+            </div>
+            <div class="comments" id="commentsContainer">
+                <!-- Comments will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Sidebar (Video Playlist) -->
+    <div class="sidebar-right" id="rightSidebar">
+        <h3>Recommended Videos</h3>
+        <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/7qkaz8ChelI/sddefault.jpg" onclick="loadVideo('Y7gCpOAunkU')" alt="Constitution Overview">
+            <video class="video-preview" muted>
+                <source src="https://www.youtube.com/embed/Y7gCpOAunkU?si=n4g_zCWL-PkqguE2" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-thumbnail">
+            <img src="https://i3.ytimg.com/vi/8facy0nK8Lw/hqdefault.jpg" onclick="loadVideo('3t8XdRJHBtU')" alt="Fundamental Rights">
+            <video class="video-preview" muted>
+                <source src="https://www.youtube.com/embed/3t8XdRJHBtU?si=3EGZZs0QcJ6ZkaJB" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-thumbnail">
+            <img src="https://i3.ytimg.com/vi/N6t6QHQtdVw/hqdefault.jpg" onclick="loadVideo('ELvyPN9SeEI')" alt="Directive Principles">
+            <video class="video-preview" muted>
+                <source src="https://www.youtube.com/embed/ELvyPN9SeEI?si=kXIegWGe2on6P-Vp" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/NRARb0NneiU/hqdefault.jpg" onclick="loadVideo('NRARb0NneiU')" alt="Directive Principles">
+            <video class="video-preview" muted>
+                <source src="https://www.youtube.com/embed/NRARb0NneiU?si=zDOm9mmgAcOWxl6H" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- Toggle Buttons -->
+    <div class="sidebar-toggle-left" onclick="toggleLeftSidebar()">☰ Menu</div>
+    <div class="sidebar-toggle-right" onclick="toggleRightSidebar()">☰ Playlist</div>
+
+    <script src="courseScripts.js"></script>
+</body>
+</html>
